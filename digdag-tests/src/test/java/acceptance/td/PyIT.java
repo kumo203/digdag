@@ -74,6 +74,13 @@ public class PyIT
         s3Bucket = config.get("s3_bucket", String.class);
         s3Endpoint = config.get("s3_endopint", String.class);
 
+        logger.info("ecsRegion: {}", ecsRegion);
+        logger.info("accessKeyId: ...{}", accessKeyId.substring(accessKeyId.length()-4, accessKeyId.length()));
+        logger.info("ecsCluster: {}..{}", ecsCluster.substring(0, 4), ecsCluster.substring(ecsCluster.length()-4, ecsCluster.length()));
+        logger.info("ecsSubnets: {}..{}", ecsSubnets.substring(0, 4), ecsSubnets.substring(ecsSubnets.length()-4, ecsSubnets.length()));
+        logger.info("s3Bucket: {}..{}", s3Bucket.substring(0,4), s3Bucket.substring(s3Bucket.length()-4, s3Bucket.length()));
+        logger.info("s3Endpoint: {}..{}", s3Endpoint.substring(0,4), s3Endpoint.substring(s3Endpoint.length()-4, s3Endpoint.length()));
+
         server = TemporaryDigdagServer.builder()
                 .configuration(
                         "agent.command_executor.ecs.name=" + ecsCluster,
