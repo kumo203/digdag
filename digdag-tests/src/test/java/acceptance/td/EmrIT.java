@@ -119,6 +119,10 @@ public class EmrIT
         assumeThat(TD_API_KEY, not(isEmptyOrNullString()));
         assumeThat(AWS_KMS_KEY_ID, not(isEmptyOrNullString()));
 
+        logger.info("AWS_ACCESS_KEY_ID: ...{}", AWS_ACCESS_KEY_ID.substring(AWS_ACCESS_KEY_ID.length()-4, AWS_ACCESS_KEY_ID.length()));
+        logger.info("AWS_ROLE: {}{}{}...{}", AWS_ROLE.substring(0, 4), AWS_ROLE.substring(4, 8), AWS_ROLE.substring(8, 12), AWS_ROLE.substring(AWS_ROLE.length()-4, AWS_ROLE.length()));
+        logger.info("AWS_KMS_KEY_ID: {}{}", AWS_KMS_KEY_ID.substring(0, 4), AWS_KMS_KEY_ID.substring(4, 8));
+
         AWSCredentials credentials = new BasicAWSCredentials(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY);
 
         AtomicInteger s3Requests = new AtomicInteger();
@@ -322,7 +326,7 @@ public class EmrIT
     //
     //Skip all tests until fix http access to TD API
     //
-    @Ignore
+    //@Ignore
     public static class EmrWithNewClusterTest
             extends EmrIT
     {
